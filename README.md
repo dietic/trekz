@@ -1,1 +1,1 @@
-# Trekz travel app
+# Trekz app - travel made easy

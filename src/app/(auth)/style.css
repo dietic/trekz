@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: "New Amsterdam";
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url(../../../public/fonts/NewAmsterdam-Regular.ttf) format("ttf");
+  }
+}
+
+.plane-background {
+  background: url("../../../public/images/plane-background.jpg");
+  background-size: cover;
+  background-position: center center;
+}
