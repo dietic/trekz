@@ -5,10 +5,8 @@ import { register } from "@/app/(auth)/_actions/register";
 
 export default function Register() {
   return (
-    <main className="h-full w-full flex flex-col items-center pt-32 px-5">
-      <h1 className="font-NAM text-white z-10 relative text-7xl mb-14">
-        TREKZ
-      </h1>
+    <main className="h-full w-full flex flex-col items-center pt-32 px-5 z-20 relative ">
+      <h1 className="font-NAM text-white text-7xl mb-14">TREKZ</h1>
       <div className="rounded-xl bg-white p-10 w-full">
         <h2 className="font-NAM text-4xl">ÚNETE</h2>
         <p className="font-light">

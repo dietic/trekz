@@ -14,8 +14,8 @@ export default async function Login() {
     return redirect("/trips");
   }
   return (
-    <main className="h-full w-full flex flex-col justify-between items-center pt-56 pb-24">
-      <h1 className="font-NAM text-white z-10 relative text-9xl">TREKZ</h1>
+    <main className="h-full w-full flex flex-col justify-between items-center pt-56 pb-24 z-20 relative ">
+      <h1 className="font-NAM text-white text-9xl">TREKZ</h1>
       <form className="flex flex-col w-80">
         <Input
           name="email"

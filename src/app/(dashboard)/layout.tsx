@@ -13,12 +13,5 @@ export default function DashboardLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <html lang="en">
-      <body className={inter.className}>
-        <b>dashboard layout</b>
-        {children}
-      </body>
-    </html>
-  );
+  return <div className="w-full h-full relative">{children}</div>;
 }

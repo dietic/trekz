@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import "./style.css";
+
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -12,9 +15,8 @@ export default function AuthLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="plane-background w-full h-full relative">
-      <div className="absolute left-0 top-0 h-full w-full bg-blue opacity-50 z-10"></div>
-      {children}
-    </div>
+    <html lang="en" className={inter.className}>
+      <body className="w-screen h-screen relative">{children}</body>
+    </html>
   );
 }
