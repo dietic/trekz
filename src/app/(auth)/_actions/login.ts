@@ -1,34 +1,34 @@
 "use server";
+import { parseErrors } from "@/app/_utils/parse/errors";
 import { createClient } from "@/app/_utils/supabase/server";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { NextResponse } from "next/server";
 
-export async function login(formData: FormData) {
-  const supabase = createClient();
+export async function login(data: { email: string; password: string }) {
+  const supabase = await createClient();
 
-  // // type-casting here for convenience
-  // // in practice, you should validate your inputs
-  const data = {
-    email: formData.get("email") as string,
-    password: formData.get("password") as string,
-  };
+  const {
+    data: { user },
+    error,
+  } = await supabase.auth.signInWithPassword(data);
 
-  const { error } = await supabase.auth.signInWithPassword(data);
   if (error) {
-    redirect("/404");
+    throw new Error(parseErrors(error.code, "login"));
   }
+  // if (user && !user.user_metadata?.email_verified) {
+  //   throw new Error(parseErrors("email_not_verified", "login"));
+  // }
+
   revalidatePath("/", "layout");
-  redirect("/trips");
+  redirect("/onboarding");
 }
 
 export async function logout() {
-  const supabase = createClient();
+  const supabase = await createClient();
   const {
     data: { user },
   } = await supabase.auth.getUser();
   if (user) {
-    console.log("user signed out");
     await supabase.auth.signOut();
   }
   revalidatePath("/", "layout");

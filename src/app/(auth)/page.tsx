@@ -1,20 +1,12 @@
-import Button from "../_components/button/buttonComponent";
+import Button from "../_components/Button/ButtonComponent";
 import Image from "next/image";
 import googleLogo from "../../../public/images/google_logo.webp";
-import { createClient } from "../_utils/supabase/server";
-import { redirect } from "next/navigation";
+import logo from "../../../public/images/logo-trekz-5.png";
 
 export default async function Home() {
-  const supabase = createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  if (user) {
-    return redirect("/");
-  }
   return (
-    <main className="h-full w-full flex flex-col justify-between items-center z-20 relative ">
-      <h1 className="font-NAM text-white text-9xl mt-56">TREKZ</h1>
+    <main className="h-full w-full flex flex-col justify-between items-center z-20 pt-56 relative ">
+      <Image src={logo} alt="Trekz logo" width={280} />
       <div className="mb-24 w-80">
         <Button className="mb-5" fullWidth href="/register" uppercase={true}>
           Regístrate

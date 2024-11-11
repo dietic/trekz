@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ButtonProps } from "./buttonInterface";
+import { ButtonProps } from "./ButtonInterface";
 export default function Button(props: ButtonProps) {
   const {
     children,
@@ -20,7 +20,7 @@ export default function Button(props: ButtonProps) {
   //TODO: customize button to make it available when used with color blue (change border color, etc.)
   return href ? (
     <Link
-      className={`font-bold text-white py-4 rounded-xl flex justify-center items-center border-green border-2 ${
+      className={`font-bold text-white py-4 rounded-xl flex justify-center items-center border-green border-2  ${
         filled ? colorVariants[color] : `bg-transparent`
       } ${uppercase ? "uppercase" : ""} ${
         fullWidth ? "w-full" : ""
@@ -32,7 +32,7 @@ export default function Button(props: ButtonProps) {
     </Link>
   ) : (
     <button
-      className={`font-bold text-white py-4 rounded-xl flex justify-center items-center border-green border-2 ${
+      className={`disabled:bg-gray disabled:border-gray font-bold text-white py-4 rounded-xl flex justify-center items-center border-green border-2 ${
         filled ? colorVariants[color] : `bg-transparent`
       } ${uppercase ? "uppercase" : ""} ${
         fullWidth ? "w-full" : ""

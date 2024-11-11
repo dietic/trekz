@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
+/* @layer base {
   @font-face {
     font-family: "New Amsterdam";
     font-style: normal;
@@ -10,10 +10,22 @@
     font-display: swap;
     src: url("/fonts/NewAmsterdam-Regular.ttf") format("ttf");
   }
+} */
+@layer utilities {
+  .no-spinners {
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    -moz-appearance: textfield;
+  }
 }
 
-.plane-background {
-  background: url("/images/plane-background.jpg");
+.waves-background {
+  background: url("/images/background-1.jpg");
   background-size: cover;
   background-position: center center;
 }

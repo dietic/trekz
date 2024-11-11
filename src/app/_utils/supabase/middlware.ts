@@ -1,10 +1,13 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 
+const protectedRoutes = ["onboarding", "trips"];
+
 export async function updateSession(request: NextRequest) {
   let supabaseResponse = NextResponse.next({
     request,
   });
+  const pathname = request.nextUrl.pathname;
 
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -36,17 +39,32 @@ export async function updateSession(request: NextRequest) {
   const {
     data: { user },
   } = await supabase.auth.getUser();
-  console.log("!---------- user ----------!", user);
 
-  if (
-    !user &&
-    !request.nextUrl.pathname.startsWith("/login") &&
-    !request.nextUrl.pathname.startsWith("/confirm")
-  ) {
-    // no user, potentially respond by redirecting the user to the login page
-    const url = request.nextUrl.clone();
-    url.pathname = "/login";
-    return NextResponse.redirect(url);
+  const isProtectedRoute = protectedRoutes.some((route) => {
+    const regex = new RegExp(`^/${route}(/.*)?$`);
+    return regex.test(pathname);
+  });
+  const isOnboardingRoute = () => {
+    const regex = new RegExp(`^/onboarding(/.*)?$`);
+    return regex.test(pathname);
+  };
+  // if (!user && isProtectedRoute) {
+  //   const url = request.nextUrl.clone();
+  //   url.pathname = "/login";
+  //   return NextResponse.redirect(url);
+  // }
+  if (user) {
+    const { data: profile } = await supabase
+      .from("user_profiles")
+      .select("*")
+      .eq("id", user.id)
+      .limit(1)
+      .single();
+    // if (!profile.onboarded && pathname && !isOnboardingRoute()) {
+    //   const url = request.nextUrl.clone();
+    //   url.pathname = "/onboarding";
+    //   return NextResponse.redirect(url);
+    // }
   }
 
   // IMPORTANT: You *must* return the supabaseResponse object as it is. If you're

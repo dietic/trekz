@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .inside-container {
+    @apply rounded-xl bg-white p-10 w-full;
+  }
+}

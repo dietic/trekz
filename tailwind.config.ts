@@ -5,11 +5,13 @@ const config: Config = {
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/templates/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {},
     colors: {
       blue: "#1A2958",
+      red: "#F08F7B",
       green: "#00D2C1",
       pink: "#FF4E8A",
       white: "#F9F6EE",
