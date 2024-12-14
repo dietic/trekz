@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-
-const inter = Inter({ subsets: ["latin"] });
+import Navbar from "@/app/_components/navbar/navbarComponent";
+import { AuthProvider } from "@/app/_utils/context/auth";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -13,5 +13,21 @@ export default function DashboardLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <div className="w-full h-full relative">{children}</div>;
+  return (
+    <AuthProvider>
+      <div className="w-full h-full relative bg-blue pt-9 flex flex-col">
+        <div className="flex text-white justify-between w-full px-12">
+          <span className="material-icons-outlined !text-3xl !flex items-center cursor-pointer">
+            account_circle
+          </span>
+          <h2 className="font-NAM text-5xl">TREKZ</h2>
+          <span className="material-icons-outlined !text-3xl !flex items-center cursor-pointer">
+            <Link href="/trips/new">add_circle_outline</Link>
+          </span>
+        </div>
+        <div className="px-12 py-11 flex-grow">{children}</div>
+        <Navbar />
+      </div>
+    </AuthProvider>
+  );
 }

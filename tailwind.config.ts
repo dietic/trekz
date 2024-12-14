@@ -25,6 +25,6 @@ const config: Config = {
       NAM: ["New Amsterdam"],
     },
   },
-  plugins: [],
+  plugins: [require("tailwind-scrollbar")],
 };
 export default config;

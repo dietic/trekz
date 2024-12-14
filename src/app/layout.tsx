@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Toaster } from "sonner";
-import "./style.css";
-import { AuthProvider } from "./_utils/context/auth";
 import { Inter } from "next/font/google";
+import "./style.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,6 +17,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <title>Trekz app</title>
+        <link
+          href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
+          rel="stylesheet"
+        />
+      </head>
       <body className={`w-screen h-screen relative ${inter.className}`}>
         <Toaster position="top-center" richColors />
         {children}

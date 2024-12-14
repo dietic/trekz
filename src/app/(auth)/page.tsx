@@ -1,4 +1,4 @@
-import Button from "../_components/Button/ButtonComponent";
+import Button from "../_components/button/buttonComponent";
 import Image from "next/image";
 import googleLogo from "../../../public/images/google_logo.webp";
 import logo from "../../../public/images/logo-trekz-5.png";

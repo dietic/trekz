@@ -1,11 +1,11 @@
 "use client";
-import Input from "@/app/_components/Input/InputComponent";
+import Input from "@/app/_components/input/inputComponent";
 import { RegisterUser, RegisterUserSchema } from "@/app/_types/user";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import RegisterButton from "./RegisterButton";
-import HorizontalDivider from "@/app/_components/HorizontalDivider/HorizontalDividerComponent";
+import HorizontalDivider from "@/app/_components/horizontalDivider/horizontalDividerComponent";
 
 export default function RegisterForm() {
   const {

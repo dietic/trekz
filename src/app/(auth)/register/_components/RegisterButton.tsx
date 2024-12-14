@@ -1,6 +1,6 @@
 "use client";
 
-import Button from "@/app/_components/Button/ButtonComponent";
+import Button from "@/app/_components/button/buttonComponent";
 import { toast } from "sonner";
 import { register } from "../../_actions/register";
 import { useFormStatus } from "react-dom";

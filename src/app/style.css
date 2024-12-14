@@ -2,15 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-/* @layer base {
-  @font-face {
+
+@font-face {
     font-family: "New Amsterdam";
     font-style: normal;
     font-weight: 500;
     font-display: swap;
-    src: url("/fonts/NewAmsterdam-Regular.ttf") format("ttf");
-  }
-} */
+    src: url("/fonts/NewAmsterdam-Regular.ttf") format("truetype");
+}
 @layer utilities {
   .no-spinners {
     -webkit-appearance: none;
@@ -28,4 +27,28 @@
   background: url("/images/background-1.jpg");
   background-size: cover;
   background-position: center center;
+}
+
+.react-datepicker-wrapper {
+    width: 100%;
+}
+.react-datepicker__calendar-icon {
+    padding: 0 0 0 20px!important;
+    height: 3rem!important;
+}
+
+.loader {
+    border: 2px solid transparent;
+    border-top: 2px solid white;
+    border-right: 2px solid white;
+    border-radius: 50%;
+    width: 1rem;
+    height: 1rem;
+    animation: spin 0.5s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
 }

@@ -1,8 +1,8 @@
 import { z, ZodType } from "zod";
 
 export type LoginUser = {
-  email: string;
-  password: string;
+  email?: string;
+  password?: string;
 };
 export type RegisterUser = {
   email: string;
@@ -11,8 +11,8 @@ export type RegisterUser = {
 };
 
 export const loginUserSchema: ZodType<LoginUser> = z.object({
-  email: z.string().email(),
-  password: z.string().min(8),
+  email: z.string(),
+  password: z.string(),
 });
 
 export type LoginUserSchema = z.infer<typeof loginUserSchema>;

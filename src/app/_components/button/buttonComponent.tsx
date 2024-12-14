@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ButtonProps } from "./ButtonInterface";
+import { ButtonProps } from "./buttonInterface";
 export default function Button(props: ButtonProps) {
   const {
     children,
@@ -14,7 +14,7 @@ export default function Button(props: ButtonProps) {
 
   const colorVariants = {
     green: "bg-green",
-    blue: "bg-blue",
+    blue: "bg-blue border-none",
   };
 
   //TODO: customize button to make it available when used with color blue (change border color, etc.)

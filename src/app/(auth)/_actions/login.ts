@@ -5,22 +5,31 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 export async function login(data: { email: string; password: string }) {
+  if (!data.email || !data.password)
+    throw new Error(parseErrors("invalid_credentials", "login"));
   const supabase = await createClient();
-
   const {
     data: { user },
-    error,
+    error: userError,
   } = await supabase.auth.signInWithPassword(data);
-
-  if (error) {
-    throw new Error(parseErrors(error.code, "login"));
+  if (userError) {
+    throw new Error(parseErrors(userError.code, "login"));
   }
-  // if (user && !user.user_metadata?.email_verified) {
-  //   throw new Error(parseErrors("email_not_verified", "login"));
-  // }
-
-  revalidatePath("/", "layout");
-  redirect("/onboarding");
+  if (user && !user.user_metadata?.email_verified) {
+    throw new Error(parseErrors("email_not_verified", "login"));
+  }
+  if (user) {
+    const { data: userProfile, error: userProfileError } = await supabase
+      .from("user_profiles")
+      .select("*")
+      .match({ id: user.id })
+      .single();
+    if (userProfileError) {
+      throw new Error(parseErrors("error_getting_profile", "login"));
+    }
+    return userProfile.onboarded;
+  }
+  return;
 }
 
 export async function logout() {

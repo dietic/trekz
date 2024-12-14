@@ -1,5 +1,5 @@
 "use client";
-import Input from "@/app/_components/Input/InputComponent";
+import Input from "@/app/_components/input/inputComponent";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { LoginUserSchema, loginUserSchema } from "@/app/_types/user";
@@ -7,11 +7,14 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
 import { login } from "../../_actions/login";
 import LoginButton from "./LoginButton";
+import { useRouter } from "next/navigation";
+import { createActionHandler } from "@/app/_utils/form/handler";
 
 export default function LoginForm() {
   const form = useForm<LoginUserSchema>({
     resolver: zodResolver(loginUserSchema),
   });
+  const router = useRouter();
   const {
     register,
     formState: { errors },
@@ -19,15 +22,22 @@ export default function LoginForm() {
   } = form;
   const onLogin = async (data: any) => {
     try {
-      await login(data);
+      const userOnboarded = await login(data);
+      // await login(data);
+      if (userOnboarded) {
+        router.push("/trips");
+      } else {
+        router.push("/onboarding");
+      }
     } catch (error: any) {
-      console.log("error login", error);
       toast.error(error.message);
     }
   };
-
   return (
-    <form className="flex flex-col w-80" onSubmit={handleSubmit(onLogin)}>
+    <form
+      className="flex flex-col w-80"
+      action={createActionHandler(handleSubmit, onLogin)}
+    >
       <Input
         name="email"
         fullWidth
