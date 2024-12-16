@@ -77,12 +77,7 @@ export default function Dropdown({
             ))}
         </ul>
       )}
-      <input
-        type="hidden"
-        onChange={(e) => console.log(e)}
-        value={selected || ""}
-        {...register(name)}
-      />
+      <input type="hidden" value={selected || ""} {...register(name)} />
     </div>
   );
 }

@@ -36,29 +36,26 @@ export default function NewTripForm() {
 
   type GeneralInfoSchema = z.infer<typeof generalInfoSchema>;
   const form = useForm<GeneralInfoSchema>({
-    mode: "onChange",
+    mode: "onSubmit",
     resolver: zodResolver(generalInfoSchema),
   });
   const {
     register,
-    watch,
     handleSubmit,
     formState: { errors },
   } = form;
   const fetcher = (url: string) => fetch(url).then((res) => res.json());
-  const selectedCountry = watch("country");
   const { data, error, isLoading } = useSWR<{ name: string; value: string }[]>(
     "/api/countries",
     fetcher,
   );
   const countries = data || [];
-  useEffect(() => {
-    if (selectedCountry) {
-      console.log("selectedCountry", selectedCountry);
+  const ons = async (data: any) => {
+    try {
+      console.log("form submitted");
+    } catch (error) {
+      console.log("sssssssssrror");
     }
-  }, [selectedCountry]);
-  const ons = (e: any) => {
-    console.log(e);
   };
   return (
     <form onSubmit={handleSubmit(ons)}>
@@ -81,7 +78,7 @@ export default function NewTripForm() {
           register={register}
         />
       )}
-      <button type="submit">submit</button>
+      <input value="submit" type="submit" />
     </form>
   );
 }
